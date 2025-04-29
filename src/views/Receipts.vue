@@ -1,12 +1,13 @@
 <template>
   <h1>Receipts page</h1>
+  <input v-focus v-model="searchQuery" placeholder="Search..." />
   <CustomButton @click="showModal = true">Add recipe</CustomButton>
   <ReceiptForm
     :visible="showModal"
     @create="addReceipt"
     @close="showModal = false"
   />
-  <ReceiptsList :receipts="receipts" @remove="removeReceipt" />
+  <ReceiptsList :receipts="sortedAndSearchedReceipts" @remove="removeReceipt" />
 </template>
 
 <script setup lang="ts">
@@ -14,6 +15,7 @@ import { ref } from "vue";
 import ReceiptsList from "../components/ReceiptsList.vue";
 import ReceiptForm from "../components/ReceiptForm.vue";
 import CustomButton from "../components/UI/CustomButton.vue";
+import useSortedAndSearchedReceipts from "../components/hooks/useSortedAndSearchedPeceipts";
 
 interface Receipt {
   id: number;
@@ -46,6 +48,9 @@ function removeReceipt(receiptToRemove: Receipt) {
     (receipt) => receipt.id !== receiptToRemove.id
   );
 }
+
+const { searchQuery, sortedAndSearchedReceipts } =
+  useSortedAndSearchedReceipts(receipts);
 </script>
 
 <style scoped></style>

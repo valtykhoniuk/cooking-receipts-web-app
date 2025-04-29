@@ -36,7 +36,7 @@ const emit = defineEmits<{
   (event: "close"): void;
 }>();
 
-const props = defineProps<{
+defineProps<{
   visible: boolean;
 }>();
 
