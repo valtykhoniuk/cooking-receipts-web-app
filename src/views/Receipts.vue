@@ -7,6 +7,17 @@
     @create="addReceipt"
     @close="showModal = false"
   />
+  <select v-model="selectedSort">
+    <option disabled value="">Select sorting</option>
+    <option
+      v-for="option in sortedOptions"
+      :key="option.value"
+      :value="option.value"
+    >
+      {{ option.name }}
+    </option>
+  </select>
+
   <ReceiptsList :receipts="sortedAndSearchedReceipts" @remove="removeReceipt" />
 </template>
 
@@ -16,6 +27,7 @@ import ReceiptsList from "../components/ReceiptsList.vue";
 import ReceiptForm from "../components/ReceiptForm.vue";
 import CustomButton from "../components/UI/CustomButton.vue";
 import useSortedAndSearchedReceipts from "../components/hooks/useSortedAndSearchedPeceipts";
+import useSortedReceipts from "../components/hooks/useSortedReceipts";
 
 interface Receipt {
   id: number;
@@ -38,6 +50,10 @@ const receipts = ref<Receipt[]>([
 ]);
 
 const showModal = ref(false);
+const sortedOptions = ref([
+  { value: "title", name: "By name" },
+  { value: "body", name: "By content" },
+]);
 
 function addReceipt(newReceipt: Receipt) {
   receipts.value.push(newReceipt);
@@ -49,8 +65,9 @@ function removeReceipt(receiptToRemove: Receipt) {
   );
 }
 
+const { selectedSort, sortedReceipts } = useSortedReceipts(receipts);
 const { searchQuery, sortedAndSearchedReceipts } =
-  useSortedAndSearchedReceipts(receipts);
+  useSortedAndSearchedReceipts(sortedReceipts);
 </script>
 
 <style scoped></style>
