@@ -1,11 +1,19 @@
 <template>
   <h1>Receipts page</h1>
+  <CustomButton @click="showModal = true">Add recipe</CustomButton>
+  <ReceiptForm
+    :visible="showModal"
+    @create="addReceipt"
+    @close="showModal = false"
+  />
   <ReceiptsList :receipts="receipts" />
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import ReceiptsList from "../components/ReceiptsList.vue";
+import ReceiptForm from "../components/ReceiptForm.vue";
+import CustomButton from "../components/UI/CustomButton.vue";
 
 interface Receipt {
   id: number;
@@ -26,6 +34,12 @@ const receipts = ref<Receipt[]>([
     description: "Smash potatoes with salt",
   },
 ]);
+
+const showModal = ref(false);
+
+function addReceipt(newReceipt: Receipt) {
+  receipts.value.push(newReceipt);
+}
 </script>
 
 <style scoped></style>
