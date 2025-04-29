@@ -15,7 +15,7 @@
           placeholder="Enter description"
           class="input"
         />
-        <CustomButton>Add</CustomButton>
+        <custom-button>Add</custom-button>
       </form>
     </div>
   </div>

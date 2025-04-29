@@ -14,6 +14,7 @@ defineOptions({
 .btn {
   border: none;
   color: white;
+  width: 5rem;
   padding: 10px 15px;
   background-color: black;
   border-radius: 10px;

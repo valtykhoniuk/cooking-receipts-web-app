@@ -9,4 +9,11 @@
 import Navbar from "./components/UI/Navbar.vue";
 </script>
 
-<style scoped></style>
+<style scoped>
+.app {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+</style>

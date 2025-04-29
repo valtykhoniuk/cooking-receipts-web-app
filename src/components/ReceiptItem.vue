@@ -3,6 +3,9 @@
     <div>id: {{ receipt.id }}</div>
     <div>title: {{ receipt.title }}</div>
     <div>description: {{ receipt.description }}</div>
+    <div class="receipt__btn">
+      <custom-button @click="$emit('remove', receipt)">Delete</custom-button>
+    </div>
   </div>
 </template>
 

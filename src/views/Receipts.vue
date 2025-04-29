@@ -6,7 +6,7 @@
     @create="addReceipt"
     @close="showModal = false"
   />
-  <ReceiptsList :receipts="receipts" />
+  <ReceiptsList :receipts="receipts" @remove="removeReceipt" />
 </template>
 
 <script setup lang="ts">
@@ -39,6 +39,12 @@ const showModal = ref(false);
 
 function addReceipt(newReceipt: Receipt) {
   receipts.value.push(newReceipt);
+}
+
+function removeReceipt(receiptToRemove: Receipt) {
+  receipts.value = receipts.value.filter(
+    (receipt) => receipt.id !== receiptToRemove.id
+  );
 }
 </script>
 

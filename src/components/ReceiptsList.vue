@@ -5,6 +5,7 @@
         v-for="receipt in receipts"
         :key="receipt.id"
         :receipt="receipt"
+        @remove="$emit('remove', $event)"
       />
     </transition-group>
   </div>
