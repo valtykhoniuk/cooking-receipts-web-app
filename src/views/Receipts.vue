@@ -1,24 +1,34 @@
 <template>
-  <h1>Receipts page</h1>
-  <input v-focus v-model="searchQuery" placeholder="Search..." />
-  <CustomButton @click="showModal = true">Add recipe</CustomButton>
-  <ReceiptForm
-    :visible="showModal"
-    @create="addReceipt"
-    @close="showModal = false"
-  />
-  <select v-model="selectedSort">
-    <option disabled value="">Select sorting</option>
-    <option
-      v-for="option in sortedOptions"
-      :key="option.value"
-      :value="option.value"
-    >
-      {{ option.name }}
-    </option>
-  </select>
+  <div class="main">
+    <h1>Receipts page</h1>
+    <input
+      class="main__input"
+      v-focus
+      v-model="searchQuery"
+      placeholder="Search..."
+    />
+    <CustomButton @click="showModal = true">Add recipe</CustomButton>
+    <ReceiptForm
+      :visible="showModal"
+      @create="addReceipt"
+      @close="showModal = false"
+    />
+    <select class="main__select" v-model="selectedSort">
+      <option disabled value="">Select sorting</option>
+      <option
+        v-for="option in sortedOptions"
+        :key="option.value"
+        :value="option.value"
+      >
+        {{ option.name }}
+      </option>
+    </select>
 
-  <ReceiptsList :receipts="sortedAndSearchedReceipts" @remove="removeReceipt" />
+    <ReceiptsList
+      :receipts="sortedAndSearchedReceipts"
+      @remove="removeReceipt"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -70,4 +80,32 @@ const { searchQuery, sortedAndSearchedReceipts } =
   useSortedAndSearchedReceipts(sortedReceipts);
 </script>
 
-<style scoped></style>
+<style scoped>
+.main__select {
+  width: 50%;
+}
+
+.main__select:focus {
+  border-bottom: 2px solid #b1302b;
+}
+
+.main__input {
+  margin-top: 30px;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #b1302b;
+  color: #b1302b;
+  width: 50%;
+  padding: 5px 8px;
+  outline: none;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: auto;
+  text-align: center;
+  align-items: center;
+}
+</style>

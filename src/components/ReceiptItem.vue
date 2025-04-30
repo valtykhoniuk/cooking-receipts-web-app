@@ -21,9 +21,12 @@ defineProps<{ receipt: Receipt }>();
 
 <style scoped>
 .receipt {
-  border: 1px solid #ccc;
+  border: 1px solid #e0c89b;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 </style>
