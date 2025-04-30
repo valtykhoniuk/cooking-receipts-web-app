@@ -1,7 +1,7 @@
 <template>
   <div v-if="receipts.length > 0">
-    <transition-group name="post-list" tag="div">
-      <ReceiptItem
+    <transition-group name="receipt-list" tag="div">
+      <receipt-item
         v-for="receipt in receipts"
         :key="receipt.id"
         :receipt="receipt"
@@ -25,4 +25,23 @@ interface Receipt {
 defineProps<{ receipts: Receipt[] }>();
 </script>
 
-<style scoped></style>
+<style scoped>
+.receipt-list-enter-active,
+.receipt-list-leave-active {
+  transition: all 0.4s ease;
+}
+
+.receipt-list-enter-from {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.receipt-list-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.receipt-list-move {
+  transition: transform 0.4s ease;
+}
+</style>

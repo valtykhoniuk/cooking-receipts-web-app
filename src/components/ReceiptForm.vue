@@ -78,6 +78,9 @@ function close() {
 .modal-window {
   background: white;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   border-radius: 10px;
   width: 300px;
 }
